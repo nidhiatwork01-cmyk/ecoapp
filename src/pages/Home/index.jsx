@@ -1,4 +1,4 @@
-import { Navbar} from "../../components/Navbar";
+import { Navbar } from "../../components/Navbar";
 import { useEffect, useState } from "react";
 import { getAllProducts } from "../../api/getAllProducts";
 import { useCart } from "../../context/cart-context";
@@ -9,7 +9,7 @@ import { getProductsByCategory } from "../../utils/getProductsByCategory";
 export const Home = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
-  const[selectedCategory, setSelectedCategory]=useState("All");
+  const [selectedCategory, setSelectedCategory] = useState("All");
   const { cart } = useCart();
 
   console.log({ cart });
@@ -19,32 +19,43 @@ export const Home = () => {
     (async () => {
       const products = await getAllProducts();
       const categories = await getAllCategories();
-      const updatedCategories=[...categories,{id:'1a',name:'All'}]
+      const updatedCategories = [...categories, { id: "1a", name: "All" }];
 
       setProducts(products);
       setCategories(updatedCategories);
     })();
   }, []);
 
-  const onCategoryClick=(category)=>{
+  const onCategoryClick = (category) => {
     setSelectedCategory(category);
-  }
-  const filterByCategories =getProductsByCategory(products,selectedCategory);
+  };
+  const filterByCategories = getProductsByCategory(products, selectedCategory);
   return (
     <>
       <Navbar />
       <main className="pt-8">
-        <div className="flex gap-4 justify-center mb-4">
-          {
-            categories?.length>0 && categories.map(category => <div className="bg-green-400 font-semibold rounded-full p-1 hover:cursor-pointer" onClick={()=> onCategoryClick(category.name)}>{category.name}</div>)
-          }
+        <div className="category-list">
+          {categories?.length > 0 &&
+            categories.map((category) => (
+              <div
+                className={`category-pill ${
+                  selectedCategory === category.name ? "active" : ""
+                }`}
+                onClick={() => onCategoryClick(category.name)}
+              >
+                {category.name}
+              </div>
+            ))}
         </div>
-        <div className="flex flex-wrap gap-8 justify-center">
-          {
-           filterByCategories?.length > 0 ?
+
+        <div className="product-grid">
+          {filterByCategories?.length > 0 ? (
             filterByCategories.map((product) => (
               <ProductCard key={product.id} product={product} />
-            )):<h2>No products found. Please try with another category</h2>}
+            ))
+          ) : (
+            <h2>No products found. Please try with another category</h2>
+          )}
         </div>
       </main>
     </>

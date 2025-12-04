@@ -41,7 +41,7 @@ export const Login = () => {
     });
   };
   return (
-    <form onSubmit={onFormSubmit} className="bg-white shadow-md w-[400px] p-10">
+    <form onSubmit={onFormSubmit} className="bg-white shadow-md w-[450px] p-10 mx-auto mt-10 rounded-lg">
       <h2 className="flex justify-center text-3xl">Login</h2>
       <div className="flex flex-col gap-2">
         <span>Email*</span>
@@ -49,7 +49,7 @@ export const Login = () => {
           onChange={onEmailChange}
           type="email"
           required
-          placeholder="nidhiatwokr.02@gmail.com"
+          placeholder="ENTER-john@mail.com"
         />
       </div>
       <div className="flex flex-col gap-2">
@@ -57,7 +57,7 @@ export const Login = () => {
         <input className="border-b-2" onChange={onPasswordChange}
           type="password"
           required
-          placeholder="nidhiatwokr.02@gmail.com"
+          placeholder="ENTER-changeme"
         />
       </div>
       <div className="mx-4">

@@ -2,24 +2,26 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useLogin } from "../../context/login-context";
 import { useCart } from "../../context/cart-context";
+import { useWishlist } from "../../context/wishlist-context";
 
 export const Navbar = () => {
   const navigate = useNavigate();
-  const [isAccountDropDownOpen, setIsAccountDropDownOpen]=useState(false);
-  const { token, loginDispatch }=useLogin();
-  const { cart }=useCart();
+  const [isAccountDropDownOpen, setIsAccountDropDownOpen] = useState(false);
+  const { token, loginDispatch } = useLogin();
+  const { cart } = useCart();
+  const { wishlist } = useWishlist();
 
-  const onLoginClick=()=>{
-    if(token?.access_token){ 
-      navigate('/auth/login')
-    }
-    else{
+  const onLoginClick = () => {
+    if (token?.access_token) {
+      // If token exists, show logout action
       loginDispatch({
-        type: 'LOGOUT'
-      })
-      navigate('/auth/login')
+        type: "LOGOUT",
+      });
+      navigate("/auth/login");
+    } else {
+      navigate("/auth/login");
     }
-  }
+  };
 
   return (
     <header className="flex bg-green-900 py-4 px-8 text-slate-50">
@@ -28,33 +30,70 @@ export const Navbar = () => {
           Shop It
         </h1>
       </div>
-      <nav className="ml-auto flex gap-6">
+      <nav className="ml-auto flex gap-6 items-center">
         <span
           onClick={() => navigate("/wishlist")}
-          class="material-symbols-outlined text-3xl hover:cursor-pointer"
+          className="material-symbols-outlined text-3xl hover:cursor-pointer"
         >
           favorite
         </span>
+        <span className="text-sm">{wishlist?.length || 0}</span>
+
         <span
           onClick={() => navigate("/cart")}
-          class="material-symbols-outlined text-3xl hover:cursor-pointer"
+          className="material-symbols-outlined text-3xl hover:cursor-pointer"
         >
           shopping_cart
         </span>
-        <span>
-          {cart.length}
-        </span>
+        <span>{cart.length}</span>
+
         <div className="relative">
-          <span onClick={()=>setIsAccountDropDownOpen(!isAccountDropDownOpen)} class="material-symbols-outlined text-3xl hover:cursor-pointer">
+          <span
+            onClick={() => setIsAccountDropDownOpen(!isAccountDropDownOpen)}
+            className="material-symbols-outlined text-3xl cursor-pointer"
+          >
             account_circle
           </span>
-          {
-            isAccountDropDownOpen && <div className="absolute bg-green-400"><button onClick={onLoginClick}>
-            {
-              token?.access_token? 'Logout': 'Login'
-            }
-            </button></div>
-          }
+
+          {isAccountDropDownOpen && (
+            <div className="absolute right-0 bg-white text-black shadow-lg p-3 rounded-md w-40">
+              {!token?.access_token && (
+                <>
+                  <p
+                    className="cursor-pointer hover:text-green-700"
+                    onClick={() => navigate("/auth/login")}
+                  >
+                    Login
+                  </p>
+
+                  <p
+                    className="cursor-pointer hover:text-green-700 mt-2"
+                    onClick={() => navigate("/auth/signup")}
+                  >
+                    Sign Up
+                  </p>
+                </>
+              )}
+
+              {token?.access_token && (
+                <>
+                  <p className="cursor-pointer hover:text-green-700">
+                    My Account
+                  </p>
+
+                  <p
+                    className="cursor-pointer hover:text-red-600 mt-2"
+                    onClick={() => {
+                      loginDispatch({ type: "LOGOUT" });
+                      navigate("/auth/login");
+                    }}
+                  >
+                    Logout
+                  </p>
+                </>
+              )}
+            </div>
+          )}
         </div>
       </nav>
     </header>

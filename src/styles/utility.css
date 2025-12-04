@@ -22,3 +22,196 @@
   --btn-retry-text-color: #6366f1;
   --toast-background-color: #27272a;
 }
+/* ---------- Landing hero ---------- */
+.landing-hero {
+  min-height: calc(100vh - 64px);
+  background: linear-gradient(135deg, rgba(20,83,45,0.95) 0%, rgba(26,145,84,0.9) 100%);
+  color: #fff;
+  padding: 4rem 1rem;
+}
+
+.landing-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.landing-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.landing-sub {
+  font-size: 1.1rem;
+  opacity: 0.95;
+  margin-bottom: 1.25rem;
+}
+
+.landing-cta .btn-xl {
+  padding: 0.9rem 1.6rem;
+  font-size: 1.05rem;
+  border-radius: 12px;
+}
+
+/* small features row */
+.landing-features {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.landing-features .feature {
+  background: rgba(255,255,255,0.08);
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+/* ---------- Buttons improvements ---------- */
+.button {
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.btn-primary {
+  background: var(--primary-color);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(20,83,45,0.08);
+}
+
+.btn-outline-primary {
+  background: transparent;
+  color: var(--primary-color);
+  border: 2px solid rgba(20,83,45,0.12);
+}
+
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* medium responsive tweaks */
+@media (max-width: 768px) {
+  .landing-title { font-size: 2.2rem; }
+  .landing-hero { padding: 2.5rem 1rem; }
+  .card { width: 90%; }
+}
+
+/* Card polish (small) */
+.card-image-container { height: 220px; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+.card-image { width: 100%; height: 100%; object-fit:cover; }
+.card { border-radius: 12px; overflow: hidden; }
+.card-details { padding: 1rem; }
+
+/* small spacing helpers for lists */
+.flex-wrap { flex-wrap: wrap; }
+
+/* ---------------- CATEGORY TAGS ---------------- */
+
+.category-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .75rem;
+  margin-bottom: 1.5rem;
+}
+
+.category-pill {
+  background: #4ade80; /* green-400 */
+  color: #064e3b;
+  padding: .4rem .9rem;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .2s ease;
+  white-space: nowrap;  /* FIX: stops stretching */
+}
+
+.category-pill:hover {
+  background: #22c55e; 
+  transform: translateY(-2px);
+}
+
+.category-pill.active {
+  background: #14532d;
+  color: white;
+}
+
+/* Product cards grid layout */
+.product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+/* ---------------- PRODUCT CARD IMPROVEMENTS ---------------- */
+
+.card {
+  width: 260px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.08);
+  transition: 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.12);
+}
+
+.card-image-container {
+  height: 200px;
+  overflow: hidden;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-details {
+  padding: 1rem;
+}
+.button {
+  width: 100%;
+  padding: .65rem .9rem;
+  font-size: .95rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+.btn-primary {
+  background: #14532d;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #0f3f22;
+}
+
+.btn-outline-primary {
+  background: white;
+  border: 2px solid #14532d;
+  color: #14532d;
+}
+
+.btn-outline-primary:hover {
+  background: #14532d;
+  color: white;
+}
+header {
+  display: flex;
+  align-items: center;
+  height: 70px;
+}

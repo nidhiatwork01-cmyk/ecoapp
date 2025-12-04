@@ -6,6 +6,7 @@ import "./style.css";
 import reportWebVitals from "./reportWebVitals";
 import { CartProvider } from "./context/cart-context";
 import { LoginProvider } from "./context/login-context";
+import { WishlistProvider } from "./context/wishlist-context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -13,7 +14,9 @@ root.render(
     <BrowserRouter>
       <CartProvider>
         <LoginProvider>
-          <App />
+          <WishlistProvider>
+            <App/>
+          </WishlistProvider>
         </LoginProvider>
       </CartProvider>
     </BrowserRouter>
