@@ -5,6 +5,7 @@ import { AuthLogin } from "./pages/AuthLogin";
 import { Wishlist } from "./pages/Wishlist";
 import { Landing } from "./pages/Landing";
 import { AuthSignup } from "./pages/AuthSignup";
+import { ProductDetails } from "./pages/ProductDetails";
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <Route path="/auth/login" element={<AuthLogin />} />
       <Route path="/auth/signup" element={<AuthSignup />} />
       <Route path="/wishlist" element={<Wishlist />} />
+      <Route path="/product/:id" element={<ProductDetails />} />
     </Routes>
   );
 }
